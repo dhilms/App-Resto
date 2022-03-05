@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\KasirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,12 @@ Route::post('/user/store', [UserController::class ,'store'])->name('users');
 Route::post('/user/update', [UserController::class ,'update'])->name('users');
 Route::get('/user/edit/{id} ',[UserController::class ,'edit'])->name('users');
 Route::get('/user/delete/{id} ',[UserController::class ,'delete'])->name('users');
+
+Route::resource('Manajer', ManagerController::class);
+Route::resource('Kasir', KasirController::class);
+Route::get('laporan',[ManagerController::class, 'laporan'])->name('laporan');
+
+
 
 
 Route::group(['middleware' => ['auth','ceklevel:admin,manajer,kasir']], function () {

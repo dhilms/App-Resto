@@ -4,11 +4,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Daftar Menu</h2>
+                <h2>Daftar Transaksi</h2>
             </div>
             <hr>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('Manajer.create') }}"> Create</a>
+                <a class="btn btn-success" href="{{ route('Kasir.create') }}"> Create</a>
             </div>
         </div>
     </div>
@@ -22,23 +22,28 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th width="150px">Menu</th>
-            <th width="110px">Harga</th>
-            <th>Deskripsi</th>
-            <th>Tersedia</th>
-            <th width="200px">Action</th>
+            <th>Nama Pelanggan</th>
+            <th>Nama Menu</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>Total</th>
+            <th>Nama Pegawai</th>
+            <th>Tanggal</th>
+            <th width="100px">Action</th>
         </tr>
-        @foreach ($manajer as $menu )
+        @foreach ($transaksi as $items )
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $menu->nama_menu }}</td>
-            <td>Rp. {{ $menu->harga }}</td>
-            <td>{{ $menu->deskripsi }}</td>
-            <td>{{ $menu->ketersediaan }}</td>
+            <td>{{ $items->nama_pelanggan }}</td>
+            <td>{{ $items->nama_menu }}</td>
+            <td>{{ $items->harga }}</td>
+            <td>{{ $items->jumlah }}</td>
+            <td>{{ $items->total_harga }}</td>
+            <td>{{ $items->nama_pegawai}}</td>
+            <td>{{ $items->tanggal}}</td>
             <td>
-                <form action="{{ route('Manajer.destroy',$menu->id) }}"  method="POST">
+                <form action="{{ route('Kasir.destroy',$items->id) }}" method="POST">
 
-                    <a class="btn btn-primary" href="{{ route('Manajer.edit',$menu->id) }}">Edit</a>
 
                     @csrf
                     @method('DELETE')

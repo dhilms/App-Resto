@@ -6,6 +6,7 @@
             <div class="pull-left">
                 <h2>Data User</h2>
             </div>
+            <hr>
             <div class="pull-right">
                 <a class="btn btn-success" href="user/tambah"> Create</a>
             </div>
@@ -28,7 +29,7 @@
         </tr>
         @foreach ($data as $users )
         <tr>
-            <td>{{ $i++ }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $users->name }}</td>
             <td>{{ $users->username }}</td>
             <td>{{ $users->role }}</td>

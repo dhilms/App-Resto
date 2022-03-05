@@ -36,7 +36,7 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role' => $request->level,
+            'role' => $request->role,
             'remember_token' => Str::random(60),
         ]);
 

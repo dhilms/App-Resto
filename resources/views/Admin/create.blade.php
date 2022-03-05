@@ -41,15 +41,15 @@
                     <input type="password" name="password" class="form-control" placeholder="Enter Password...">
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="level" id="inlineRadio1" value="admin">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="admin">
                     <label class="form-check-label" for="inlineRadio1">Admin</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="level" id="inlineRadio1" value="manajer">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="manajer">
                     <label class="form-check-label" for="inlineRadio2">Manager</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="level" id="inlineRadio1" value="kasir">
+                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="kasir">
                     <label class="form-check-label" for="inlineRadio3">Kasir</label>
                   </div>
             </div>

@@ -45,9 +45,9 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="bi bi-clipboard-data-fill"></i>
-          <span>Data Dasar</span>
+          <span>Basic Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -56,12 +56,12 @@
             @endif
 
             @if (auth()->user()->role == "manajer")
-            <a class="collapse-item" href="">Menu</a>
-            <a class="collapse-item" href="">Laporan</a>
+            <a class="collapse-item" href="{{ url('Manajer') }}">Menu</a>
+            <a class="collapse-item" href="{{ route('laporan')}}">Laporan</a>
             @endif
 
             @if (auth()->user()->role == "kasir")
-            <a class="collapse-item" href="">Laporan</a>
+            <a class="collapse-item" href="{{ url ('Kasir')}}">Transaksi</a>
             @endif
 
           </div>
