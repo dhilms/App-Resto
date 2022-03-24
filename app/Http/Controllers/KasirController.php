@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use DateTime;
 use DateTimeZone;
 use App\Models\Manager;
-use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Redirect;
 
 
 class KasirController extends Controller
@@ -51,13 +52,17 @@ class KasirController extends Controller
             'nama_menu' => 'required',
             'jumlah' => 'required|min:1',
         ]);
+        $menu= Manager::whereNamaMenu($request->nama_menu)->first();
+        if(!$menu){
+            return back()->with('error', 'menu tidak ada');
+        }
 
-            $menu= Manager::whereNamaMenu($request->nama_menu)->first();
-            if(!$menu){
-                return back()->with('Error', 'Unregistered menu');
-            }
+        $valid= $menu->ketersediaan < $request->jumlah;
 
-            transaksi::create([
+        if($valid){
+            return Redirect::to("Kasir/")->withFail('Maaf '. $request->nama_pelanggan. ' Menu '. $request->nama_menu.' Hanya Tersisa : '  .$menu->ketersediaan .'  '.'Silahkan Memesan Menu Yang Lain');
+        }else{
+            Transaksi::create([
                 'nama_pelanggan' => $request->nama_pelanggan,
                 'nama_menu' => $request->nama_menu,
                 'jumlah' => $request->jumlah,
@@ -66,40 +71,11 @@ class KasirController extends Controller
                 'nama_pegawai' => auth()->user()->name,
                 'tanggal' => $tanggal,
             ]);
-
             $menu->update([
                 'ketersediaan' => $menu->ketersediaan - $request->jumlah,
             ]);
-
-
-
-
-
-            return redirect()->route('Kasir.index')
-            ->with('Success');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $menu = transaksi::findOrFail($id);
-        return view('Kasir.edit', compact('menu'));
+            return Redirect::to("Kasir/")->withSuccess('Menu Anda Telah di Tambahkan');
+        }
     }
 
     /**

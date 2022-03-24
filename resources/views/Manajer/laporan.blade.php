@@ -8,10 +8,28 @@
             </div>
             <hr>
             <div class="pull-right">
-                <a class="btn btn-danger" href="#"> Cetak</a>
+                <a class="btn btn-danger" href="laporan/pdf"> Cetak</a>
             </div>
         </div>
     </div>
+    <br>
+    <form action="{{ route('search') }}" method="get">
+        @csrf
+        <div class="form-group row">
+            <label for="from" class="col-form-label col-sm-2">Date From :</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" name="from"  required>
+            </div>
+            <label for="to" class="col-form-label col-sm-2">Date to :</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" name="to" required>
+            </div>
+            <div class="col-sm-2">
+            <button type="submit"  class="btn btn-info"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <hr class="sidebar-divider">
+    </form>
     <br>
     @if ($message = Session::get('Success'))
         <div class="alert alert-success">

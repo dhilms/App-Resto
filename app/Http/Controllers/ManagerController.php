@@ -6,6 +6,7 @@ use App\Models\Manager;
 use App\Models\transaksi;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\PDF;
 
 
 class ManagerController extends Controller
@@ -91,7 +92,7 @@ class ManagerController extends Controller
 
         if($store){
             return redirect()->route('Manajer.index')
-            ->with('success','Berhasil Mengedit !');
+            ->with('Success','Berhasil Mengedit !');
         }
     }
 
@@ -134,5 +135,11 @@ class ManagerController extends Controller
         $report = transaksi::whereBetween('tanggal', array($from,$to))->paginate(20);
         $total = transaksi::select(DB::raw('SUM(total_harga) as total'))->whereBetween('tanggal', array($from,$to))->get()->first()->total;
         return view('Manajer.laporan', compact('report','total'));
+    }
+
+    public function cetak(){
+        $transaksi = transaksi::all();
+        $total = transaksi::select(DB::raw('SUM(total_harga) as total'))->get()->first()->total;
+            return view('Manajer.laporan_pdf',compact('transaksi','total'));
     }
 }

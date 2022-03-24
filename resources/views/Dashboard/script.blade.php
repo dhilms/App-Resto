@@ -14,3 +14,4 @@
   <!-- Page level custom scripts -->
   <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script>
   <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
+  @include('sweetalert::alert')

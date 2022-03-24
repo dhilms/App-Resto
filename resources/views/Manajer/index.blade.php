@@ -12,6 +12,7 @@
             </div>
         </div>
     </div>
+
     <br>
     @if ($message = Session::get('Success'))
         <div class="alert alert-success">

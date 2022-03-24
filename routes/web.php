@@ -22,6 +22,7 @@ Route::get('/', function () {
     return view('Login.login');
 });
 
+// Route Admin
 route::get('/login',[LoginController::class,'halamanlogin'])->name('login');
 route::post('/postlogin',[LoginController::class,'postlogin'])->name('postlogin');
 Route::get('/user', [UserController::class ,'index'])->name('users');
@@ -31,9 +32,15 @@ Route::post('/user/update', [UserController::class ,'update'])->name('users');
 Route::get('/user/edit/{id} ',[UserController::class ,'edit'])->name('users');
 Route::get('/user/delete/{id} ',[UserController::class ,'delete'])->name('users');
 
+// Route Manager
 Route::resource('Manajer', ManagerController::class);
-Route::resource('Kasir', KasirController::class);
 Route::get('laporan',[ManagerController::class, 'laporan'])->name('laporan');
+Route::get('search',[ManagerController::class, 'search'])->name('search');
+Route::get('laporan/pdf',[ManagerController::class, 'cetak'])->name('cetak');
+
+// Route Kasir
+Route::resource('Kasir', KasirController::class);
+
 
 
 

@@ -13,11 +13,11 @@
         </div>
     </div>
     <br>
-    @if ($message = Session::get('Success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+    @if(Session::has('fail'))
+    <div class="alert alert-danger">
+       {{Session::get('fail')}}
+    </div>
+@endif
 
     <table class="table table-bordered">
         <tr>
